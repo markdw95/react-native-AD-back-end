@@ -18,7 +18,6 @@ app.get('/test', (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/home.html'));
-  //res.json({ success: true, message: 'Welcome to backend zone!' });
 });
 
 app.listen(8000, () => {
