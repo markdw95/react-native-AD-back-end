@@ -11,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(userRouter);
 
+app.use(express.static(__dirname + '/public'));
 
 app.get('/test', (req, res) => {
   res.send('Hello world');
