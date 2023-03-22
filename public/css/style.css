@@ -359,4 +359,56 @@ body {
   
   .tab-nav li.active a {
     background: #f27b41; }
+
+    * {
+      box-sizing: border-box;
+    }
+    
+    .featureBody {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 2rem;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+    
+    ol {
+      padding: 0;
+      margin: 0;
+      max-width: 700px;
+      position: relative;
+    }
+    
+    ol::before {
+      content: '';
+      width: 0.5rem;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 8%;
+      background: peachpuff;
+      z-index: -1;
+    }
+
+    ol li{
+      list-style-type: none;
+    }
+    
+    .feature{
+      padding: 0.5rem 1.5rem 1rem;
+      border-radius: 1.5rem;
+      background: peachpuff;
+    }
+    
+    li + li {
+      margin-top: 1rem;
+    }
+    
+
+    h1{
+      color: #f27b41;
+    }
+    
   
