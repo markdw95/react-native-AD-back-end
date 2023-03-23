@@ -7,6 +7,6 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => {
-    console.log('our db is connected');
+    console.log('Connected to MongoDB.');
   })
   .catch(err => console.log(err.message));
