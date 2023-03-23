@@ -8,5 +8,5 @@ This is a Full Stack phone app called Acquire Dynamics.
 
 - First clone or download this project.
 - Do install everything using `npm install`
-- Make sure you created a `.env` file and include `MONGO_URI`.
+- Make sure you created a `.env` file and include `MONGO_URI`. Ensure this is pointed to the correct DB (test/prod/etc).
 - Start the project by running `npm start`
