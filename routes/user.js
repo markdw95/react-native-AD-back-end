@@ -4,7 +4,6 @@ const router = express.Router();
 const {
   createUser,
   userSignIn,
-  uploadProfile,
   signOut,
   addConnection,
   getConnectionInfo,
@@ -33,12 +32,6 @@ const uploads = multer({ storage, fileFilter });
 router.post('/create-user', validateUserSignUp, userVlidation, createUser);
 router.post('/sign-in', validateUserSignIn, userVlidation, userSignIn);
 router.post('/sign-out', isAuth, signOut);
-router.post(
-  '/upload-profile',
-  isAuth,
-  uploads.single('profile'),
-  uploadProfile
-);
 router.post(
   '/addConnection',
   isAuth,

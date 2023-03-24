@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const UserConnection = require('../models/userConnection');
 const sharp = require('sharp');
-const cloudinary = require('../helper/imageUpload');
+const encryptor = require('../helper/encryptor');
 
 exports.createUser = async (req, res) => {
   console.log(req.body);
@@ -78,36 +78,6 @@ exports.userSignIn = async (req, res) => {
   res.json({ success: true, user: userInfo, token });
 };
 
-exports.uploadProfile = async (req, res) => {
-  const { user } = req;
-  if (!user)
-    return res
-      .status(401)
-      .json({ success: false, message: 'unauthorized access!' });
-
-  try {
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      public_id: `${user._id}_profile`,
-      width: 500,
-      height: 500,
-      crop: 'fill',
-    });
-
-    const updatedUser = await User.findByIdAndUpdate(
-      user._id,
-      { avatar: result.url },
-      { new: true }
-    );
-    res
-      .status(201)
-      .json({ success: true, message: 'Your profile has updated!' });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: 'server error, try after some time' });
-    console.log('Error while uploading profile image', error.message);
-  }
-};
 
 exports.signOut = async (req, res) => {
   if (req.headers && req.headers.authorization) {
@@ -132,11 +102,13 @@ exports.addConnection = async (req, res) => {
 
     const { email } = req.body;
 
+    const secretEncryption = encryptor.encrypt(req.body.AuthClientSecret);
+
     formData = {
       D365ResourceURL: req.body.D365ResourceURL,
       AuthHostURL: req.body.AuthHostURL,
       AuthClientId: req.body.AuthClientId,
-      AuthClientSecret: req.body.AuthClientSecret,
+      AuthClientSecret: secretEncryption,
       AuthToken: "",
       AuthTokenExp: ""
     };
@@ -145,6 +117,8 @@ exports.addConnection = async (req, res) => {
       {"email": email},
       formData
     );
+
+    formData.AuthClientSecret = req.body.AuthClientSecret;
 
     res
       .status(201)
@@ -165,6 +139,8 @@ exports.getConnectionInfo = async (req, res) => {
     const addUserConnection = await UserConnection.findOne(
       {"email": email}
     );
+
+    addUserConnection.AuthClientSecret = encryptor.decrypt(addUserConnection.AuthClientSecret);
 
     res
       .status(201)
