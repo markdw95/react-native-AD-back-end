@@ -368,7 +368,7 @@ body {
       font-family: 'Roboto Slab', serif;
       font-size: 1.2rem;
       margin: 0;
-      padding: 8rem;
+      padding: 5rem;
       display: grid;
       place-items: center;
       min-height: 100vh;
@@ -408,6 +408,11 @@ body {
     
 
     h1{
+      color: #f27b41;
+    }
+
+    h6{
+      padding-top: 1rem;
       color: #f27b41;
     }
     
