@@ -416,4 +416,26 @@ body {
       color: #f27b41;
     }
     
-  
+    .featureBodyGettingStarted {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 5rem;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      background: peachpuff;
+    }
+
+    .playstore{
+      display: block;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .connections{
+      display: block;
+      margin-left: 15%;
+      margin-right: auto;
+    }
