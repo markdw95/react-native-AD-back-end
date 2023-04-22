@@ -180,3 +180,28 @@ exports.updateUserConnectionToken = async (req, res) => {
   }
 };
 
+exports.deleteAccount = async (req, res) => {
+  try {
+
+    const { email } = req.body;
+
+    const deleteUserConnection = await UserConnection.deleteOne(
+      {"email": email}
+    );
+
+    const deleteUser = await User.deleteOne(
+      {"email": email}
+    );
+
+    res
+      .status(201)
+      .json({ success: true, message: 'Your account has deleted!'});
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: 'server error, try after some time' });
+    console.log('Error while deleting account ', error.message);
+  }
+};
+
+

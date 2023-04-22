@@ -7,7 +7,8 @@ const {
   signOut,
   addConnection,
   getConnectionInfo,
-  updateUserConnectionToken
+  updateUserConnectionToken,
+  deleteAccount
 } = require('../controllers/user');
 const { isAuth } = require('../middlewares/auth');
 const {
@@ -46,6 +47,11 @@ router.post(
   '/updateUserConnectionToken',
   isAuth,
   updateUserConnectionToken
+);
+router.post(
+  '/deleteAccount',
+  isAuth,
+  deleteAccount
 );
 
 module.exports = router;
