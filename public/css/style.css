@@ -2,11 +2,11 @@ body {
     font-family: "Raleway", sans-serif;
     line-height: 1.5;
     font-size: 1em; 
-    background-color: #070a2d; 
+    background-color: #74AAC9FF; 
   }
   
   a {
-    color: #f27b41;
+    color: #ffffff;
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease; }
@@ -368,7 +368,6 @@ body {
       font-family: 'Roboto Slab', serif;
       font-size: 1.2rem;
       margin: 0;
-      padding: 5rem;
       display: grid;
       place-items: center;
       min-height: 100vh;
@@ -381,16 +380,7 @@ body {
       position: relative;
     }
     
-    ol::before {
-      content: '';
-      width: 0.5rem;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 8%;
-      background: peachpuff;
-      z-index: -1;
-    }
+  
 
     ol li{
       list-style-type: none;
@@ -408,12 +398,12 @@ body {
     
 
     h1{
-      color: #f27b41;
+      color: #ffffff;
     }
 
     h6{
       padding-top: 1rem;
-      color: #f27b41;
+      color: #ffffff;
     }
     
     .featureBodyGettingStarted {
@@ -424,7 +414,6 @@ body {
       display: grid;
       place-items: center;
       min-height: 100vh;
-      background: peachpuff;
     }
 
     .playstore{
