@@ -417,9 +417,15 @@ body {
     }
 
     .playstore{
-      display: block;
-      width: 60%;
-      margin-left: auto;
+      width: 28%;
+    }
+
+    .appstore{
+      width: 30%;
+    }
+
+    .storeIcons{
+      margin-left: 28%;
       margin-right: auto;
     }
 
@@ -427,4 +433,12 @@ body {
       display: block;
       margin-left: 15%;
       margin-right: auto;
+    }
+
+    .homeText {
+      width: 60%;
+      margin-right: 20%;
+      margin-left: 20%;
+      place-items: center;
+      text-align: center;
     }
