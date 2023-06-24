@@ -8,7 +8,8 @@ const {
   addConnection,
   getConnectionInfo,
   updateUserConnectionToken,
-  deleteAccount
+  deleteAccount,
+  jwtSignIn
 } = require('../controllers/user');
 const { isAuth } = require('../middlewares/auth');
 const {
@@ -32,6 +33,7 @@ const uploads = multer({ storage, fileFilter });
 
 router.post('/create-user', validateUserSignUp, userVlidation, createUser);
 router.post('/sign-in', validateUserSignIn, userVlidation, userSignIn);
+router.post('/sign-in-with-token', isAuth, jwtSignIn);
 router.post('/sign-out', isAuth, signOut);
 router.post(
   '/addConnection',

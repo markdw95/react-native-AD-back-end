@@ -32,6 +32,42 @@ exports.createUser = async (req, res) => {
   res.json({ success: true, user });
 };
 
+exports.jwtSignIn = async (req, res) => {
+
+  if (!req.user)
+    return res.json({
+      success: false,
+      message: 'user not found, with the given email!',
+  });
+
+  const token = jwt.sign({ userId: req.user._id }, process.env.JWT_SECRET, {
+    expiresIn: '1d',
+  });
+
+  let oldTokens = req.user.tokens || [];
+
+  if (oldTokens.length) {
+    oldTokens = oldTokens.filter(t => {
+      const timeDiff = (Date.now() - parseInt(t.signedAt)) / 1000;
+      if (timeDiff < 86400) {
+        return t;
+      }
+    });
+  }
+
+  await User.findByIdAndUpdate(req.user._id, {
+    tokens: [...oldTokens, { token, signedAt: Date.now().toString() }],
+  });
+
+  const userInfo = {
+    fullname: req.user.fullname,
+    email: req.user.email,
+    avatar: req.user.avatar ? req.user.avatar : '',
+  };
+
+  res.json({ success: true, user: userInfo, token });
+}
+
 exports.userSignIn = async (req, res) => {
   const { email, password } = req.body;
 
