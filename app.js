@@ -64,7 +64,7 @@ app.post('/pay-success', express.raw({type: 'application/json'}), (request, resp
 
 app.use(express.urlencoded()); // for application/x-www-form-urlencoded
 
-app.post('/pay-cancel', userSignIn, (req, res) => {
+app.post('/pay-cancel', (req, res) => {
 
   User.findOne({email: req.body.email}, async function(err, user){
 
