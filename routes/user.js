@@ -74,8 +74,8 @@ router.get('/payment', function(req, res, next) {
         plan: process.env.STRIPE_PLAN,
       }],
     },
-    success_url: 'http://localhost:8000/payment?session_id={CHECKOUT_SESSION_ID}',
-    cancel_url: 'http://localhost:8000/payment',
+    success_url: 'https://acquiredynamics.com/payment?session_id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'https://acquiredynamics.com/payment',
   }, function(err,session){
         var Id = session.id;
 
