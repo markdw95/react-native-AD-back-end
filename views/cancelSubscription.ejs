@@ -16,9 +16,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AcquireDynamics</title>
-    <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/style.css">
     <link rel="stylesheet" href="dist/css/nav.css">
+    <link rel="stylesheet" href="dist/css/style.css">
+        <!-- Custom styles for this template-->
+    <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <link rel="icon" href="/LandingPage_1.0/images/clear-tabIcon.png">
 </head>
@@ -29,7 +31,7 @@
 
             <section class="top-nav">
                 <div>
-                    <a href="index.html"><img class="header-logo-image asset-light" src="dist/images/clear-tabIcon.png" alt="Header Logo"></a>
+                    <a href="index.html"><img class="header-logo-image" src="dist/images/clear-tabIcon.png" alt="Header Logo"></a>
                 </div>
                 <input id="menu-toggle" type="checkbox" />
                 <label class='menu-button-container' for="menu-toggle">
@@ -40,35 +42,41 @@
                   <li><a class="nav-link" href="roadmap.html">Road Map</a></li>
                   <li><a class="nav-link" href="video.html">Videos</a></li>
                   <li><a class="nav-link" href="about.html">About Us</a></li>
-                  <li><a class="nav-link" href="/payment">Enable Account</a></li>
+                  <li><a class="nav-link" href="enable.html">Enable Account</a></li>
                 </ul>
               </section>
         </header>
+          
+    <!--Main Body-->
 
-        <main>
+    
 
-            <section class="cta section mt-3">
+    <section class="cta section">
+      <div class="container-sm">
+          <div class="cta-inner section-inner">
 
-            <section class=" section">
-                <div class="features-inner section-inner has-bottom-divider">
-                    <div class="features-header text-center">
-                        <div class="container-sm">
-                            <h2 class="section-title mt-0">Who are we?</h2>
-                            <h6 class="section-title mt-0">Integration Architects </h6>
-                            <p class="section-paragraph">
-                                AcquireDynamics was made by D365 solution architects with years of experience supporting client implementations. We have a specialized interest in integrations and a holistic approach to using all available technologies to best support our clients needs.
-                            </p>
-                            <p class="section-paragraph">
-                                As consultants, we have taken clients live with mobile sales order entry requirements and noticed the multichannel order creation in D365 is missing full support from mobile devices.
-                            </p>
-                            <img class="appstore" src="dist/images/SACert.png">
-                        </div>
-                    </div>
-            </section>
+            <h2 class="section-title mb-4">Disable your account</h2>
+            <br>
+          <i class="fas fa-user-plus"></i> User's subscription information
+          </h1>
+          <hr class="sidebar-divider mb-4">
+          <form class="mb-4" action="/pay-cancel" method="POST">
+              <input  id="email" name="email" class="form-control mb-4" placeholder="Email" >
+              <input  id="password" name="password"  type='password' class="form-control mb-4" placeholder="Password" >
+              <!-- Divider -->
+              <hr class="sidebar-divider mb-4">
 
-            </section>
+            <button type="submit" class="btn btn-danger btn-block">
+              Cancel Subscription
+            </button>
+          </form>
 
-        </main>
+          </div>
+          </div>
+          </section>
+
+  <!-- End Main Body-->
+
 
         <footer class="site-footer has-top-divider">
             <div class="container">
@@ -97,6 +105,5 @@
         </footer>
     </div>
 
-    <script src="dist/js/main.min.js"></script>
 </body>
 </html>

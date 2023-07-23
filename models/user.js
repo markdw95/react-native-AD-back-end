@@ -15,6 +15,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subscriptionActive:{
+    type: Boolean,
+    default: false
+  },
+  customerID:{
+    type: String,
+  },
+  subscriptionID:{
+    type: String,
+  },
   avatar: String,
   tokens: [{ type: Object }],
 });

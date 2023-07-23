@@ -18,6 +18,7 @@
     <title>AcquireDynamics</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
+    <link rel="stylesheet" href="dist/css/nav.css">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <link rel="icon" href="/LandingPage_1.0/images/clear-tabIcon.png">
 </head>
@@ -25,20 +26,23 @@
     <div class="body-wrap boxed-container">
         <header class="site-header">
             <div class="container">
-                <div class="site-header-inner">
-                    <div class="brand header-brand">
-                        <h1 class="m-0">
-                            <a href="index.html">
-								<img class="header-logo-image asset-light" src="dist/images/clear-tabIcon.png" alt="Header Logo">
-								<img class="header-logo-image asset-dark" src="dist/images/logo-dark.svg" alt="Header Logo">
-                            </a>
-                        </h1>
-                    </div>
-                    <a class="" href="guide.html">Getting Started</a>
-                    <a class="" href="roadmap.html">Road Map</a>
-                    <a class="" href="video.html">Videos</a>
+
+            <section class="top-nav">
+                <div>
+                    <a href="index.html"><img class="header-logo-image asset-light" src="dist/images/clear-tabIcon.png" alt="Header Logo"></a>
                 </div>
-            </div>
+                <input id="menu-toggle" type="checkbox" />
+                <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+              </label>
+                <ul class="menu">
+                  <li><a class="nav-link"  href="guide.html">Getting Started</a></li>
+                  <li><a class="nav-link" href="roadmap.html">Road Map</a></li>
+                  <li><a class="nav-link" href="video.html">Videos</a></li>
+                  <li><a class="nav-link" href="about.html">About Us</a></li>
+                  <li><a class="nav-link" href="/payment">Enable Account</a></li>
+                </ul>
+              </section>
         </header>
 
         <main>
