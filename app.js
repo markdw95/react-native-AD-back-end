@@ -17,9 +17,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-// EJS
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
 
 //STRIPE
 var stripe = require('stripe')(process.env.STRIPE_SECRETE_KEY);
@@ -66,22 +63,64 @@ app.use(express.urlencoded()); // for application/x-www-form-urlencoded
 
 app.post('/pay-cancel', (req, res) => {
 
+  var message = "Subscription canceled for " + req.body.email;
+
+  console.log(req.body);
+
   User.findOne({email: req.body.email}, async function(err, user){
 
-    stripe.subscriptions.del(user.subscriptionID);
-
     if(user){
-      await User.findByIdAndUpdate(user._id, { 
-        subscriptionActive: false,
-        customerID: '',
-        subscriptionID: ''
-      });
 
+      const isMatch = await user.comparePassword(req.body.password);
+
+      if (!isMatch)
+      {
+        message = "Incorrect email or password.";
+      }
+      else
+      {
+        if (user.subscriptionActive)
+        {
+          stripe.subscriptions.del(user.subscriptionID);
+  
+          await User.findByIdAndUpdate(user._id, { 
+            subscriptionActive: false,
+            customerID: '',
+            subscriptionID: ''
+          });
+        }
+      }
+
+    }
+    else
+    {
+      message = "Subscription not found for " + req.body.email;
     }
   });
 
-  res.sendFile(path.join(__dirname + '/public/index.html'));
+  stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    subscription_data: {
+      items: [{
+        plan: process.env.STRIPE_PLAN,
+      }],
+    },
+    success_url: 'https://acquiredynamics.com/payment?session_id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'https://acquiredynamics.com/payment',
+  }, function(err,session){
+        var Id = session.id;
+
+        res.render('payment', {
+          session: Id,
+          STRIPE_PUBLIC_KEY : process.env.STRIPE_PUBLIC_KEY,
+          message:message
+        })
+  });
 });
+
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
 
 app.use(express.json());
 

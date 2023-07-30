@@ -79,14 +79,20 @@ router.get('/payment', function(req, res, next) {
   }, function(err,session){
         var Id = session.id;
 
+        var message = "";
+
         res.render('payment', {
           session: Id,
-          STRIPE_PUBLIC_KEY : process.env.STRIPE_PUBLIC_KEY
+          STRIPE_PUBLIC_KEY : process.env.STRIPE_PUBLIC_KEY,
+          message:message
         })
   });
 });
 router.get('/cancelSubscription', async function(req, res, next) {
   res.render('cancelSubscription');
+});
+router.get('/pay-cancel', async function(req, res, next) {
+  res.render('payment');
 });
 
 module.exports = router;
