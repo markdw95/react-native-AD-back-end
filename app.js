@@ -45,6 +45,13 @@ app.post('/pay-success', express.raw({type: 'application/json'}), (request, resp
 
     User.findOne({email: session.customer_details.email}, async function(err, user){
       if(user){
+
+        //Cancel old subscription if one already exists for this user.
+        if (user.subscriptionActive)
+        {
+          stripe.subscriptions.del(user.subscriptionID);
+        }
+
         await User.findByIdAndUpdate(user._id, { 
           subscriptionActive: true,
           customerID:session.customer,
