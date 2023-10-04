@@ -9,6 +9,7 @@ const {userSignIn} = require('./controllers/user');
 
 const app = express();
 
+app.use(express.json());
 app.use(userRouter);
 
 app.use(express.static(__dirname + '/public'));
@@ -126,10 +127,10 @@ app.post('/pay-cancel', (req, res) => {
 });
 
 // EJS
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
+// app.use(expressLayouts);
+// app.set('view engine', 'ejs');
 
-app.use(express.json());
+// app.use(express.json());
 
 app.listen(process.env.PORT || 8000, () => {
   console.log('Port is listening');
